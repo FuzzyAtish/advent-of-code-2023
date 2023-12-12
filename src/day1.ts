@@ -1,11 +1,34 @@
 import { getTextFromFile } from 'utils.js';
 
+const DIGITS_AS_WORDS: string[] = [
+  'one',
+  'two',
+  'three',
+  'four',
+  'five',
+  'six',
+  'seven',
+  'eight',
+  'nine',
+];
+
 const getNumbersFromLine = (line: string): number[] => {
   let nums: number[] = [];
-  [...line].forEach((num) => {
+  [...line].forEach((num, idx) => {
     const val: number = parseInt(num, 10) ?? -1;
     if (val >= 0) {
       nums.push(val);
+    } else {
+      for (let i = 0; i < DIGITS_AS_WORDS.length; i++) {
+        if (
+          idx + DIGITS_AS_WORDS[i].length <= line.length &&
+          line.substring(idx, idx + DIGITS_AS_WORDS[i].length) ==
+            DIGITS_AS_WORDS[i]
+        ) {
+          nums.push(i + 1);
+          break;
+        }
+      }
     }
   });
   return nums;
@@ -20,6 +43,7 @@ const getFirstAndLastDigitsAsNumber = (numsArr: number[]): number => {
 };
 
 export const day1 = (): void => {
+  // const lines: string[] = getTextFromFile('./assets/day1-part2-sample.txt');
   const lines: string[] = getTextFromFile('./assets/day1.txt');
   // console.log(lines);
   let sum = 0;
