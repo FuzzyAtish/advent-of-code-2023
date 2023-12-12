@@ -1,1 +1,3 @@
-console.log('Próba 1-2-3');
+import { day1 } from 'day1.js';
+
+day1();
