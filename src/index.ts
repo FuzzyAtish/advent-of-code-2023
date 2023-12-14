@@ -1,3 +1,3 @@
-import { day1 } from 'day1.js';
+import { day1 } from 'day1.ts';
 
 day1();

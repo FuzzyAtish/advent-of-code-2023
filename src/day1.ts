@@ -1,4 +1,4 @@
-import { getTextFromFile } from 'utils.js';
+import { getTextFromFile } from 'utils.ts';
 
 const DIGITS_AS_WORDS: string[] = [
   'one',
@@ -15,7 +15,7 @@ const DIGITS_AS_WORDS: string[] = [
 const getNumbersFromLine = (line: string): number[] => {
   let nums: number[] = [];
   [...line].forEach((num, idx) => {
-    const val: number = parseInt(num, 10) ?? -1;
+    const val: number = parseInt(num) ?? -1;
     if (val >= 0) {
       nums.push(val);
     } else {
